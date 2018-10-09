@@ -32,6 +32,7 @@ function connect(event) {
     event.preventDefault();
 }
 
+
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
@@ -41,6 +42,7 @@ function onConnected() {
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
+
     connectingElement.classList.add('hidden');
 }
 
@@ -70,10 +72,10 @@ function onMessageReceived(payload) {
 
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' entrou!';
+        message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' saiu!';
+        message.content = message.sender + ' left!';
     } else {
         messageElement.classList.add('chat-message');
 
@@ -99,6 +101,7 @@ function onMessageReceived(payload) {
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
+
 
 function getAvatarColor(messageSender) {
     var hash = 0;

@@ -6,7 +6,8 @@ import org.springframework.web.socket.config.annotation.*;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer
+{
 
 	// configura uma sessao wesocket junto a framework js sockjs
     @Override
@@ -14,9 +15,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws").withSockJS();
     }
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/topic");
-    }
+	@Override
+	public void configureMessageBroker(MessageBrokerRegistry registry)
+	{
+		registry.setApplicationDestinationPrefixes("/app");
+		registry.enableSimpleBroker("/topic");
+	}
 }
